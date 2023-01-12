@@ -1,0 +1,1 @@
+export { deleteWithCondition } from "./delete";

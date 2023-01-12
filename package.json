@@ -1,0 +1,33 @@
+{
+  "name": "spravce",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "module": "esnext",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon",
+    "build": "rimraf ./build && tsc",
+    "start": "npm run build && node build/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "\\"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.20"
+  },
+  "devDependencies": {
+    "@types/mysql": "^2.15.21",
+    "@types/node": "^18.11.18",
+    "rimraf": "^3.0.2",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.4"
+  }
+}

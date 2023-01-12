@@ -1,0 +1,1 @@
+export { updateWithCondition } from "./update";
