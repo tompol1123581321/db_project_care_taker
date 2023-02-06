@@ -1,13 +1,15 @@
 import { Handler } from "express";
 import { deleteFlat } from "../../db/operations/flat";
+import { deleteUnreferencedOwners } from "../../db/operations/owner";
 
 export const deleteFlatController: Handler = async (req, res) => {
-  const { id } = req.query;
+  const { id } = JSON.parse(JSON.stringify(req.body));
   if (id) {
-    await deleteFlat(Number(id), () => {
-      res.status(200);
+    await deleteFlat(Number(id), async () => {
+      await deleteUnreferencedOwners();
+      res.sendStatus(200);
     });
   } else {
-    res.status(400);
+    res.sendStatus(400);
   }
 };

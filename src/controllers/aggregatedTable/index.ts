@@ -15,6 +15,7 @@ const getTableDataQueryParams = (req: Request): TableParams | undefined => {
     size,
     rented,
     flatId,
+    ownerId,
   } = req.query;
   if (key && direction && page) {
     const sortParams = { key, direction } as SortParameters;
@@ -39,6 +40,12 @@ const getTableDataQueryParams = (req: Request): TableParams | undefined => {
         flatId,
       });
     }
+    if (ownerId) {
+      Object.assign(additionalFilterParameters, {
+        "flats.ownerId": Number(ownerId),
+      });
+    }
+    console.log(additionalFilterParameters);
     return {
       sortParams,
       page: Number(page),

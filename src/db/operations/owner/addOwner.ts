@@ -1,20 +1,20 @@
 import { OwnerAtributes } from "../../../models/ownerModels";
 import { insertSingleRow } from "../generic/insert";
-import { deleteUnreferencedOwners } from "./deleteUnreferencedOwners";
+import { format } from "mysql";
 
 export const addOwner = async (
   newOwnerParams: OwnerAtributes,
   cb: (val: any) => void
 ) => {
-  const ownersQuery = `${newOwnerParams.ownerAddress}, ${newOwnerParams.name}, ${newOwnerParams.birthDate}, ${newOwnerParams.email}`;
+  console.log(newOwnerParams);
+  const genericSql =
+    "INSERT INTO owners (ownerAddress, name, birthDate, email) VALUES (?,?,?,?)";
+  const sql = format(genericSql, [
+    newOwnerParams.ownerAddress,
+    newOwnerParams.name,
+    new Date(newOwnerParams.birthDate).toISOString().split("T")[0],
+    newOwnerParams.email,
+  ]);
 
-  await insertSingleRow(
-    "owners",
-    "ownerAddress, name, birthDate, email",
-    ownersQuery,
-    async (value) => {
-      await deleteUnreferencedOwners();
-      cb(value);
-    }
-  );
+  await insertSingleRow(sql, cb);
 };

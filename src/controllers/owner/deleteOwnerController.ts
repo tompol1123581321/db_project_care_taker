@@ -2,12 +2,12 @@ import { Handler } from "express";
 import { deleteUnreferencedOwners } from "../../db/operations/owner";
 
 export const deleteOwnerController: Handler = async (req, res) => {
-  const { id } = req.query;
+  const { id } = JSON.parse(JSON.stringify(req.body));
   if (id) {
     await deleteUnreferencedOwners(String(id), () => {
-      res.status(200);
+      res.sendStatus(200);
     });
   } else {
-    res.status(400);
+    res.sendStatus(400);
   }
 };

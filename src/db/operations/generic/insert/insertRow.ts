@@ -1,14 +1,10 @@
 import { getDbClient } from "../../../connection";
 
 export const insertSingleRow = async (
-  tableName: "buildings" | "flats" | "flatTypes" | "owners",
-  definition: string,
-  values: string,
+  sql: string,
   cb: (value: Array<Record<string, unknown>>) => void
 ) => {
   try {
-    const sql = `INSERT INTO ${tableName} (${definition}) VALUES (${values})`;
-
     const client = getDbClient();
     if (!client) return;
 

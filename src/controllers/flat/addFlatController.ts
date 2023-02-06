@@ -2,7 +2,9 @@ import { Handler, Request } from "express";
 import { addFlat } from "../../db/operations/flat";
 
 const addFlatParamsMapper = (request: Request) => {
-  const { buildingId, flatTypeId, ownerId } = request.query;
+  const { buildingId, flatTypeId, ownerId } = JSON.parse(
+    JSON.stringify(request.body)
+  );
   if (buildingId && flatTypeId && ownerId) {
     return { buildingId, flatTypeId, ownerId };
   }
@@ -16,10 +18,10 @@ export const addFlatController: Handler = async (req, res) => {
       Number(params.flatTypeId),
       Number(params.buildingId),
       () => {
-        res.status(200);
+        res.sendStatus(200);
       }
     );
   } else {
-    res.status(400);
+    res.sendStatus(400);
   }
 };

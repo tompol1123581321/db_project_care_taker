@@ -5,7 +5,7 @@ export const deleteUnreferencedOwners = async (
   cb?: () => void
 ) => {
   const query = `DELETE FROM owners WHERE owners.ownerId NOT IN (SELECT ownerId FROM flats) AND owners.ownerId NOT IN (SELECT representativeId from buildings) ${
-    id ? `WHERE owners.ownerId = ${id}` : ""
+    id ? `AND owners.ownerId = ${id}` : ""
   }`;
 
   await genericDbOperation(query, async () => {
