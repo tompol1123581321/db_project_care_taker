@@ -1,8 +1,8 @@
 import { Request, RequestHandler } from "express";
+import { SortParameters, TableParams } from "../../../models";
 import {
   getAllFromAllTables,
-  SortParameters,
-  TableParams,
+  getCountFromAllTables,
 } from "../../db/operations/aggregatedTable";
 
 const getTableDataQueryParams = (req: Request): TableParams | undefined => {
@@ -45,7 +45,6 @@ const getTableDataQueryParams = (req: Request): TableParams | undefined => {
         "flats.ownerId": Number(ownerId),
       });
     }
-    console.log(additionalFilterParameters);
     return {
       sortParams,
       page: Number(page),
@@ -58,8 +57,15 @@ const getTableDataQueryParams = (req: Request): TableParams | undefined => {
 export const getMainTableController: RequestHandler = async (req, res) => {
   const params = getTableDataQueryParams(req);
   await getAllFromAllTables(
-    (value) => {
-      res.send(JSON.stringify(value));
+    async (value) => {
+      await getCountFromAllTables(
+        (c) => {
+          const response = { content: value, totalCount: c[0].count };
+          res.send(JSON.stringify(response));
+        },
+        params?.searchQuery,
+        params?.additionalFilterParameters
+      );
     },
     params?.page,
     params?.sortParams,

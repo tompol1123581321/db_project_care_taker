@@ -5,6 +5,6 @@ export type OwnerAtributes = {
   email: string;
 };
 
-export type EditedOwnerAtributes = {
+export type Owner = {
   ownerId: number;
 } & OwnerAtributes;

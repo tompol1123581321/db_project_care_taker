@@ -1,4 +1,4 @@
-import { FlatAtributes } from "../../../models/flatModels";
+import { FlatAtributes } from "../../../../models/flat";
 import { updateWithCondition } from "../generic/update";
 import { deleteUnreferencedOwners } from "../owner/deleteUnreferencedOwners";
 

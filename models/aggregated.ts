@@ -26,8 +26,14 @@ export type TableParams = {
   additionalFilterParameters: AdditionalFilterParameters;
 };
 
+export const defaultFilterParams: TableParams = {
+  page: 1,
+  searchQuery: "",
+  sortParams: { direction: "DESC", key: "flatId" },
+  additionalFilterParameters: { buildingId: 0, flatTypeId: 0 },
+};
+
 export type AdditionalFilterParameters = {
-  rented?: string;
+  flatTypeId?: number;
   buildingId?: number;
-  size?: string;
 };

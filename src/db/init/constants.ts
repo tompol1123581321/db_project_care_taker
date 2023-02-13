@@ -68,7 +68,6 @@ export const POPULATE_TABLES_ARGS: Record<
       [40, 6, 3],
       ...Array.from(Array(40).keys())
         .filter((i) => {
-          console.log(i);
           const item = i + 1;
           return item !== 1 && item !== 15 && item !== 40;
         })

@@ -1,11 +1,11 @@
 import { Handler, Request } from "express";
 import isEmpty from "lodash/isEmpty";
 import { editOwner } from "../../db/operations/owner";
-import { EditedOwnerAtributes, OwnerAtributes } from "../../models/ownerModels";
+import { Owner, OwnerAtributes } from "../../../models/owner";
 
 const mapUpdatedAtributes = (request: Request) => {
   const updatedAtributes = JSON.parse(JSON.stringify(request.body)) as Record<
-    keyof EditedOwnerAtributes,
+    keyof Owner,
     any
   >;
   const { ownerId, ...rest } = updatedAtributes;

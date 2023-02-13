@@ -1,7 +1,7 @@
 import { Handler, Request, json } from "express";
 import isEmpty from "lodash/isEmpty";
 import { addOwner } from "../../db/operations/owner";
-import { OwnerAtributes } from "../../models/ownerModels";
+import { OwnerAtributes } from "../../../models/owner";
 
 const mapNewAtributes = (request: Request) => {
   const newAtributes = JSON.stringify(request.body);

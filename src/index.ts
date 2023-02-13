@@ -1,5 +1,6 @@
 import { connectToDb } from "./db/connection";
 import express from "express";
+import cors from "cors";
 import {
   addFlatController,
   addOwnerController,
@@ -10,6 +11,7 @@ import {
   getGetAllFromTableController,
   getMainTableController,
 } from "./controllers";
+import { aggregatedBuildingsController } from "./controllers/aggregatedBuildings";
 
 await connectToDb();
 
@@ -17,12 +19,13 @@ const app = express();
 const port = 3001;
 
 app.use(express.json());
+app.use(cors());
 
 app.get("/api/aggregatedTableData", getMainTableController);
 
 app.get("/api/flatTypes", getGetAllFromTableController("flatTypes"));
 
-app.get("/api/buildings", getGetAllFromTableController("buildings"));
+app.get("/api/buildings", aggregatedBuildingsController);
 
 app.get("/api/owners", getGetAllFromTableController("owners"));
 

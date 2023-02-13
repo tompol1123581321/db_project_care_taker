@@ -1,4 +1,4 @@
-import { OwnerAtributes } from "../../../models/ownerModels";
+import { OwnerAtributes } from "../../../../models/owner";
 import { insertSingleRow } from "../generic/insert";
 import { format } from "mysql";
 
@@ -6,7 +6,6 @@ export const addOwner = async (
   newOwnerParams: OwnerAtributes,
   cb: (val: any) => void
 ) => {
-  console.log(newOwnerParams);
   const genericSql =
     "INSERT INTO owners (ownerAddress, name, birthDate, email) VALUES (?,?,?,?)";
   const sql = format(genericSql, [

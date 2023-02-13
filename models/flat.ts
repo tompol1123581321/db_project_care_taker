@@ -1,4 +1,4 @@
-export type UpdatedFlatItemAtributes = {
+export type Flat = {
   flatId: number;
 } & FlatAtributes;
 

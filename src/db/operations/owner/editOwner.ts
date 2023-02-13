@@ -1,4 +1,4 @@
-import { OwnerAtributes } from "../../../models/ownerModels";
+import { OwnerAtributes } from "../../../../models/owner";
 import { updateWithCondition } from "../generic/update";
 
 export const editOwner = async (

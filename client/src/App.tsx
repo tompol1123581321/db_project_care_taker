@@ -1,9 +1,9 @@
-import { FlatsOverviewTable } from "./components/app/flatsOverview/flatsTable";
+import { CareTakerApp } from "./components";
 
 const App = () => {
   return (
     <div className="App">
-      <FlatsOverviewTable />
+      <CareTakerApp />
     </div>
   );
 };

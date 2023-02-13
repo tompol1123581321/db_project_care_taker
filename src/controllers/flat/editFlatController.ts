@@ -2,10 +2,7 @@ import { Handler, Request } from "express";
 import isEmpty from "lodash/isEmpty";
 import { editFlat } from "../../db/operations/flat";
 import { deleteUnreferencedOwners } from "../../db/operations/owner";
-import {
-  FlatAtributes,
-  UpdatedFlatItemAtributes,
-} from "../../models/flatModels";
+import { FlatAtributes, Flat } from "../../../models/flat";
 
 const mapEditFlatParams = (
   request: Request
@@ -17,8 +14,8 @@ const mapEditFlatParams = (
   const { flatId, ...rest } = JSON.parse(JSON.stringify(request.body));
   if (flatId && !isEmpty(rest)) {
     return { flatId, ...rest } as unknown as Record<
-      keyof UpdatedFlatItemAtributes,
-      UpdatedFlatItemAtributes[keyof UpdatedFlatItemAtributes]
+      keyof Flat,
+      Flat[keyof Flat]
     > & { flatId: number };
   }
 };
