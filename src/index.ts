@@ -11,7 +11,7 @@ import {
   getGetAllFromTableController,
   getMainTableController,
 } from "./controllers";
-import { aggregatedBuildingsController } from "./controllers/aggregatedBuildings";
+import { aggregatedBuildingsController } from "./controllers/buildings/aggregatedBuildings";
 
 await connectToDb();
 

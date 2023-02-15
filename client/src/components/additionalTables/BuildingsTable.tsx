@@ -35,7 +35,8 @@ export const BuildingsTable: React.FC<{ buildings: Array<Building> }> = ({
   buildings,
 }) => (
   <Table
-    caption={<Typography.Title level={5}>Buildings</Typography.Title>}
+    bordered
+    caption={<Typography.Title level={3}>Buildings</Typography.Title>}
     style={{ marginBottom: "2rem" }}
     columns={columns}
     dataSource={buildings}

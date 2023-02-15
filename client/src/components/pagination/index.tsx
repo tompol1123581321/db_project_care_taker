@@ -16,7 +16,7 @@ export const PaginationForm: React.FC<Props> = ({
     return (
       <Pagination
         style={{ marginBottom: "2rem" }}
-        pageSize={10}
+        pageSize={5}
         current={currentFilterParams.page}
         onChange={(page) => {
           onFilterParamsChange({ ...currentFilterParams, page });

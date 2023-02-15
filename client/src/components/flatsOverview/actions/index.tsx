@@ -14,12 +14,12 @@ export const ActionsItem: React.FC<Props> = ({
   return (
     <Row>
       <Col>
-        <Button type="primary" onClick={onOpenEditForm}>
+        <Button size="small" type="primary" onClick={onOpenEditForm}>
           <EditOutlined />
         </Button>
       </Col>
       <Col>
-        <Button danger type="primary" onClick={onDeleteItem}>
+        <Button size="small" danger type="primary" onClick={onDeleteItem}>
           <DeleteOutlined />
         </Button>
       </Col>

@@ -60,10 +60,10 @@ export const CareTakerApp = () => {
   }, [tableParams]);
 
   return (
-    <Layout style={{ maxHeight: "100vh", maxWidth: "100vw" }}>
+    <Layout>
       <Header
         style={{
-          backgroundColor: "Highlight",
+          backgroundColor: "white",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
@@ -81,10 +81,10 @@ export const CareTakerApp = () => {
         }}
       >
         <Row>
-          <Col span={15}>
+          <Col span={17}>
             <BuildingsTable buildings={buildingOptions} />
           </Col>
-          <Col span={8} offset={1}>
+          <Col span={6} offset={1}>
             <FlatTypesTable flatTypes={flatTypeOptions} />
           </Col>
         </Row>
@@ -119,11 +119,14 @@ export const CareTakerApp = () => {
           </Col>
         </Row>
         <EditCompleteFlatItemForm
+          buildings={buildingOptions}
+          flatTypes={flatTypeOptions}
           isOpen={formDrawerSettings.isOpen}
           initData={formDrawerSettings.formData}
-          onClose={() =>
-            setFormDrawerSettings({ formData: null, isOpen: false })
-          }
+          onClose={() => {
+            setFormDrawerSettings({ formData: null, isOpen: false });
+            setTableParams({ ...tableParams });
+          }}
         />
       </Content>
     </Layout>

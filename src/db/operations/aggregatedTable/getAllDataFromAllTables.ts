@@ -23,11 +23,11 @@ export const getAllFromAllTables = async (
       "SELECT * FROM flats INNER JOIN buildings ON flats.buildingId = buildings.buildingId " +
       "INNER JOIN flatTypes ON flats.flatTypeId = flatTypes.flatTypeId " +
       "INNER JOIN owners ON flats.ownerId = owners.ownerId " +
-      `WHERE (name  LIKE '%${searchQuery}%' OR email LIKE '%${searchQuery}%' OR ownerAddress LIKE '%${searchQuery}%' OR buildingAddress LIKE '%${searchQuery}%')` +
+      `WHERE (name  LIKE '%${searchQuery}%' OR email LIKE '%${searchQuery}%' OR buildingAddress LIKE '%${searchQuery}%')` +
       getAdditionalFilterParametersQuery(additionalFilterParameters) +
       `ORDER BY ${sortParams.key} ${sortParams.direction} LIMIT ${
-        (page - 1) * 10
-      }, 10`;
+        (page - 1) * 5
+      }, 5`;
 
     await client.query(query, (error, res) => {
       if (error) {

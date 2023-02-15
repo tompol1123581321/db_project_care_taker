@@ -7,3 +7,10 @@ export type FlatAtributes = {
   flatTypeId: number;
   buildingId: number;
 };
+
+export type EditOrAddFlatItem = {
+  buildingId?: number;
+  flatId?: number;
+  ownerId?: number;
+  flatTypeId?: number;
+};

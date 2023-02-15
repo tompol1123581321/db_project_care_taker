@@ -8,6 +8,7 @@ import {
 } from "../../../../../models";
 import { SortLabel } from "../sorting";
 import { ActionsItem } from "../actions";
+import { deleteFlat } from "../../../api";
 
 type Props = {
   currentFilterParams: TableParams;
@@ -87,11 +88,16 @@ export const FlatsOverviewTable: React.FC<Props> = ({
       {
         title: "Actions",
         render: (_, item: CompleteFlatItem) => {
-          const onEdit = () => {
-            onEditFlatItem(item);
+          const onEdit = async () => {
+            await onEditFlatItem(item);
+            onFilterParamsChange({ ...currentFilterParams });
+          };
+          const onDelete = async () => {
+            await deleteFlat(item.flatId);
+            onFilterParamsChange({ ...currentFilterParams });
           };
           return (
-            <ActionsItem onDeleteItem={() => {}} onOpenEditForm={onEdit} />
+            <ActionsItem onDeleteItem={onDelete} onOpenEditForm={onEdit} />
           );
         },
         key: "actions",
@@ -102,6 +108,7 @@ export const FlatsOverviewTable: React.FC<Props> = ({
 
   return (
     <Table
+      bordered
       style={{ marginBottom: "0.5rem" }}
       columns={columns}
       dataSource={tableData}

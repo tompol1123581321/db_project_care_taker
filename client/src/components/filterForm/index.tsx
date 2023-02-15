@@ -53,6 +53,7 @@ export const FilterForm: React.FC<Props> = ({
       onFilterParamsChange({
         ...currentFilterParams,
         searchQuery: e.target.value,
+        page: 1,
       });
     },
     [currentFilterParams, onFilterParamsChange]
@@ -62,6 +63,7 @@ export const FilterForm: React.FC<Props> = ({
       return (value: number) => {
         onFilterParamsChange({
           ...currentFilterParams,
+          page: 1,
           additionalFilterParameters: {
             ...currentFilterParams.additionalFilterParameters,
             [name]: value,

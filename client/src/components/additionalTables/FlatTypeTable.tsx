@@ -22,7 +22,8 @@ export const FlatTypesTable: React.FC<{ flatTypes: Array<FlatType> }> = ({
   flatTypes,
 }) => (
   <Table
-    caption={<Typography.Title level={5}>Flat types</Typography.Title>}
+    bordered
+    caption={<Typography.Title level={3}>Flat types</Typography.Title>}
     pagination={{ pageSize: 4 }}
     columns={columns}
     dataSource={flatTypes}

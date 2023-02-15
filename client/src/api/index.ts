@@ -2,7 +2,11 @@ import axios, { AxiosResponse } from "axios";
 import {
   Building,
   CompleteFlatItem,
+  Flat,
+  FlatAtributes,
   FlatType,
+  Owner,
+  OwnerAtributes,
   TableParams,
 } from "../../../models";
 
@@ -42,4 +46,34 @@ export const getAggregatedData = async (
   }
   const params = { ...rest, ...sortParams, ...transformedAdditionalParams };
   return await axios.get(url, { params });
+};
+
+export const deleteFlat = async (id: number) => {
+  const url = `${prefix}deleteFlat`;
+  await axios.post(url, { id });
+};
+
+export const addFlat = async (flatAtributes: FlatAtributes) => {
+  const url = `${prefix}addFlat`;
+  await axios.post(url, flatAtributes);
+};
+
+export const editFlat = async (flat: Flat) => {
+  const url = `${prefix}editFlat`;
+  await axios.post(url, flat);
+};
+
+export const getAllOwners = async () => {
+  const url = `${prefix}owners`;
+  return await axios.get(url);
+};
+
+export const editOwner = async (owner: Owner) => {
+  const url = `${prefix}editOwner`;
+  await axios.post(url, owner);
+};
+
+export const add = async (ownerAtributes: OwnerAtributes) => {
+  const url = `${prefix}addOwner`;
+  await axios.post(url, ownerAtributes);
 };
